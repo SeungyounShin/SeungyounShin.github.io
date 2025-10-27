@@ -6,8 +6,8 @@ subtitle: |+
   <p style="margin-bottom: 10px;">I am a <strong>Machine Learning Engineer</strong> at <a href="https://channel.io/ko">ChannelTalk</a>, where I'm actively involved in developing and optimizing AI solutions.</p>
   <p style="margin-bottom: 10px;">My current focus includes:</p>
   <ul style="margin-bottom: 10px;">
-    <li>Researching advanced function calling techniques in Large Language Models (LLMs), utilizing SFT and Preference Learning</li>
-    <li>Exploring synthetic data collection methods and seamless training approaches for enhanced model performance</li>
+    <li>Exploring refined RL strategies for agentic LLMs so they can plan, decide, and act gracefully with tools</li>
+    <li>Researching and building TTS, voice-agent, and omni-modal models for production</li>
   </ul>
   <p style="margin-bottom: 10px;">I hold a <strong>Master's degree in Artificial Intelligence</strong> from <a href="http://xai.korea.ac.kr/">Korea University</a>, where I studied under professor <a href="https://sites.google.com/view/sungjoon-choi/personal">Sungjoon Choi</a>.</p>
   <p style="margin-bottom: 10px;">For professional inquiries or collaborations, please contact me at <strong><a href="mailto:robin@channel.io">robin@channel.io</a></strong>.</p>
