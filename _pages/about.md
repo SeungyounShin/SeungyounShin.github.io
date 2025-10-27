@@ -24,7 +24,7 @@ social: true  # includes social icons at the bottom of the page
 
 **Research Interest:** 
 
-Large Language Models (LLMs), Synthetic Data Generation, Multimodal, Efficient Fine-tuning Strategies
+Large Language Models (LLMs), Omni-modal, Agents
 
 **Work Experience:** 
 - 2024.06 - Present : [Channel Talk](https://channel.io/en), Machine Learning Engineer
