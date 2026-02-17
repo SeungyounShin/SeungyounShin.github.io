@@ -41,29 +41,16 @@ _styles: >
   .stage-card ul {
     margin-bottom: 0;
   }
-  .loss-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
-    margin: 24px 0;
+  .loss-section {
+    margin: 32px 0;
   }
-  .loss-card {
-    background: #ffffff;
+  .loss-section img {
+    display: block;
+    margin: 0 auto;
+    width: 85%;
+    border-radius: 12px;
     border: 1px solid #e8e8e8;
-    border-radius: 16px;
-    padding: 20px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-    text-align: center;
-  }
-  .loss-card img {
-    width: 100%;
-    border-radius: 8px;
-    margin-bottom: 12px;
-  }
-  .loss-card .caption {
-    font-size: 0.9em;
-    color: #555;
-    line-height: 1.5;
   }
   .fc-example {
     background: #1e1e1e;
@@ -119,11 +106,6 @@ _styles: >
   .data-pipeline .step-result {
     background: #e8f5e9;
     border: 1px solid #a5d6a7;
-  }
-  @media (max-width: 768px) {
-    .loss-grid {
-      grid-template-columns: 1fr;
-    }
   }
 
 ---
@@ -275,22 +257,23 @@ Function Calling 학습 데이터는 다음과 같이 만들었다:
 
 8대의 H100 80GB로 훈련했다.
 
-<div class="loss-grid">
-<div class="loss-card">
+### Stage 1 — Alignment
+
+<div class="loss-section">
 <img src="/assets/img/sori/train_loss_4b.png" alt="Stage 1 Training Loss">
-<div class="caption"><strong>Stage 1 — Alignment</strong><br>6,000 steps. 2k 스텝 부근에서 loss가 급격히 떨어진다.</div>
 </div>
-<div class="loss-card">
+
+처음 2,000 스텝 동안은 loss가 3 근처에서 큰 변화 없이 머문다. audio_proj가 아직 음성 공간과 텍스트 공간의 관계를 못 찾은 거다. 그러다 2k 스텝 즈음에서 **급격하게 떨어진다**. 마치 "아, 이 음성 벡터가 이 텍스트에 대응하는 거구나!" 하고 갑자기 깨달은 것처럼. 이후로는 1 이하로 안정적으로 수렴한다. 6,000 스텝, 12M 파라미터만 학습하는 건데 이 정도면 alignment가 꽤 빠르게 이루어지는 셈이다.
+
+솔직히 처음에는 "고작 12M 파라미터로 되겠어?" 싶었다. 4.7B 모델에서 0.25%만 학습하는 건데. 근데 loss가 이렇게 떨어지는 걸 보면서 확신이 생겼다. Audio Encoder와 LLM이 이미 각자의 영역에서 충분히 강력하니까, 둘을 연결하는 다리만 잘 놓으면 되는 거였다.
+
+### Stage 2 — Function Calling
+
+<div class="loss-section">
 <img src="/assets/img/sori/train_loss_fc.png" alt="Stage 2 Training Loss">
-<div class="caption"><strong>Stage 2 — Function Calling</strong><br>~350 steps (5 epochs). 빠르게 수렴.</div>
-</div>
 </div>
 
-**Stage 1**의 loss 곡선이 특히 재밌다. 처음 2,000 스텝 동안은 loss가 3 근처에서 큰 변화 없이 머문다. audio_proj가 아직 음성 공간과 텍스트 공간의 관계를 못 찾은 거다. 그러다 2k 스텝 즈음에서 **급격하게 떨어진다**. 마치 "아, 이 음성 벡터가 이 텍스트에 대응하는 거구나!" 하고 갑자기 깨달은 것처럼. 이후로는 1 이하로 안정적으로 수렴한다.
-
-**Stage 2**는 더 극적이다. 350 스텝(5 에폭)밖에 안 되는데, 초반 loss 2.5에서 거의 즉시 0.1~0.2 수준으로 떨어진다. Stage 1에서 이미 음성 이해 능력이 갖춰진 상태이고, Qwen3-4B 자체가 tool use를 할 줄 아는 모델이라 LoRA로 살짝 방향만 잡아주면 되는 것이다.
-
-솔직히 처음에는 "고작 12M 파라미터로 되겠어?" 싶었다. 4.7B 모델에서 0.25%만 학습하는 건데. 근데 loss가 생각보다 빠르게 떨어지는 걸 보면서 확신이 생겼다. Audio Encoder와 LLM이 이미 각자의 영역에서 충분히 강력하니까, 둘을 연결하는 다리만 잘 놓으면 되는 거였다.
+Stage 2는 더 극적이다. 350 스텝(5 에폭)밖에 안 되는데, 초반 loss 2.5에서 거의 즉시 0.1~0.2 수준으로 떨어진다. Stage 1에서 이미 음성 이해 능력이 갖춰진 상태이고, Qwen3-4B 자체가 tool use를 할 줄 아는 모델이라 LoRA로 살짝 방향만 잡아주면 되는 것이다.
 
 ## 결과
 
