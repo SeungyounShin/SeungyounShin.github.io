@@ -92,8 +92,8 @@ _styles: >
 
 Speech LLM을 만드는 핵심 아이디어는 놀라울 정도로 단순하다.
 
-<div class="highlight-box">
-이미 잘 훈련된 <strong>Audio Encoder</strong>가 있고, 이미 잘 훈련된 <strong>LLM</strong>이 있다. 이 둘을 연결하는 <strong>작은 다리(Projection Layer)</strong>만 학습시키면 된다.
+<div class="highlight-box" markdown="1">
+이미 잘 훈련된 **Audio Encoder**가 있고, 이미 잘 훈련된 **LLM**이 있다. 이 둘을 연결하는 **작은 다리(Projection Layer)**만 학습시키면 된다.
 </div>
 
 생각해보면 당연하다. Audio Encoder는 이미 소리를 의미있는 벡터로 바꿀 줄 안다. LLM은 이미 언어를 이해할 줄 안다. 우리가 해야 할 건 Audio Encoder의 출력 공간과 LLM의 입력 공간을 **정렬(align)** 시키는 것뿐이다.
@@ -136,7 +136,7 @@ Audio Encoder는 [Qwen3-Omni](https://huggingface.co/Qwen/Qwen3-Omni-30B-A3B-Ins
 
 첫 번째 단계는 모델이 한국어 음성을 텍스트로 전사할 수 있게 하는 것이다. 이 단계에서는 **audio_proj MLP만** 학습시킨다.
 
-<div class="stage-card">
+<div class="stage-card" markdown="1">
 
 **Stage 1 — Alignment**
 
@@ -168,7 +168,7 @@ Audio Encoder는 [Qwen3-Omni](https://huggingface.co/Qwen/Qwen3-Omni-30B-A3B-Ins
 
 Stage 1에서 모델이 한국어를 알아듣게 되었으니, 이제 한 단계 더 나아간다. **음성으로 Function Calling**을 하게 만드는 것이다.
 
-<div class="stage-card">
+<div class="stage-card" markdown="1">
 
 **Stage 2 — Function Calling (LoRA Fine-tuning)**
 
