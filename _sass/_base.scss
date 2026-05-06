@@ -1094,3 +1094,28 @@ nav[data-toggle="toc"] {
     padding-top: 0.5rem;
   }
 }
+
+.experience-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 0 0 1rem 0;
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+    line-height: 1.4;
+  }
+
+  .org-logo {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+    border-radius: 4px;
+    background: #ffffff;
+    padding: 2px;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.06);
+  }
+}

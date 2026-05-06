@@ -22,12 +22,36 @@ social: true  # includes social icons at the bottom of the page
 
 Large Language Models (LLMs), Omni-modal, Agents
 
-**Work Experience:** 
-- 2026.03 - Present : [Upstage](https://www.upstage.ai/), AI Research Engineer
-- 2024.06 - 2026.03 : [Channel Talk](https://channel.io/en), Machine Learning Engineer
-- 2023.08 - 2024.01: [NAVER Cloud](https://www.navercloudcorp.com/), Creativity Lab Intern
-- 2019.06 - 2019.09: [mAyI](https://may-i.io/), Software Engineer Intern
+**Work Experience:**
+
+<ul class="experience-list">
+  <li>
+    <img src="{{ '/assets/img/logos/upstage.png' | relative_url }}" alt="Upstage" class="org-logo"/>
+    <span>2026.03 – Present : <a href="https://www.upstage.ai/">Upstage</a>, AI Research Engineer</span>
+  </li>
+  <li>
+    <img src="{{ '/assets/img/logos/channeltalk.webp' | relative_url }}" alt="Channel Talk" class="org-logo"/>
+    <span>2024.06 – 2026.03 : <a href="https://channel.io/en">Channel Talk</a>, Machine Learning Engineer</span>
+  </li>
+  <li>
+    <img src="{{ '/assets/img/logos/navercloud.png' | relative_url }}" alt="NAVER Cloud" class="org-logo"/>
+    <span>2023.08 – 2024.01 : <a href="https://www.navercloudcorp.com/">NAVER Cloud</a>, Creativity Lab Intern</span>
+  </li>
+  <li>
+    <img src="{{ '/assets/img/logos/mayi.png' | relative_url }}" alt="mAyI" class="org-logo"/>
+    <span>2019.06 – 2019.09 : <a href="https://may-i.io/">mAyI</a>, Software Engineer Intern</span>
+  </li>
+</ul>
 
 **Education**
-- **M.S. in Artificial Intelligence**, [Korea University](http://xai.korea.ac.kr/) (Sep 2022 - Present). Advisor: Prof. [Sungjoon Choi.](https://sites.google.com/view/sungjoon-choi/personal)
-- **B.Sc. in Computer Science**, [Dongguk University](https://www.dongguk.edu/main) (Mar 2018 - Aug 2022).
+
+<ul class="experience-list">
+  <li>
+    <img src="{{ '/assets/img/logos/korea.gif' | relative_url }}" alt="Korea University" class="org-logo"/>
+    <span><strong>M.S. in Artificial Intelligence</strong>, <a href="http://xai.korea.ac.kr/">Korea University</a> (Sep 2022 – Aug 2024). Advisor: Prof. <a href="https://sites.google.com/view/sungjoon-choi/personal">Sungjoon Choi</a>.</span>
+  </li>
+  <li>
+    <img src="{{ '/assets/img/logos/dongguk.png' | relative_url }}" alt="Dongguk University" class="org-logo"/>
+    <span><strong>B.Sc. in Computer Science</strong>, <a href="https://www.dongguk.edu/main">Dongguk University</a> (Mar 2018 – Aug 2022).</span>
+  </li>
+</ul>
