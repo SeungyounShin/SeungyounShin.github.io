@@ -11,3 +11,4 @@ vendor
 
 package-lock.json
 package.json
+.claude/

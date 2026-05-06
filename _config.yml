@@ -6,7 +6,7 @@ title: Seungyoun Shin(신승윤) # the website title (if blank, full name will b
 first_name: Seungyoun
 middle_name: 
 last_name: Shin
-email: ssy10011218@naver.com
+email: logan@upstage.ai
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
   A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design.
 footer_text: >
@@ -74,9 +74,9 @@ og_image: # The site-wide (default for all links) Open Graph preview image
 
 github_username: SeungyounShin
 gitlab_username: # your GitLab user name
-twitter_username: # your Twitter handle
+twitter_username: loganshin1211
 mastodon_username: # your mastodon instance+username in the format instance.tld/@username
-linkedin_username: # your LinkedIn user name
+linkedin_username: seungyoun-shin-374580132
 telegram_username: # your Telegram user name
 scholar_userid: # your Google Scholar ID
 semanticscholar_id: # your Semantic Scholar ID
@@ -389,8 +389,8 @@ bootstrap:
 bootstrap-table:
   version: "1.21.4"
 fontawesome:
-  version: "6.4.0"
-  integrity: "sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8="
+  version: "6.7.2"
+  integrity: "sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo="
 jquery:
   version: "3.6.0"
   integrity: "sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
