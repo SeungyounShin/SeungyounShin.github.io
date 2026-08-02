@@ -117,6 +117,7 @@ contact_note: >
 
 google_analytics:  # your Google Analytics measurement ID (format: G-XXXXXXXXXX)
 cronitor_analytics:  # cronitor RUM analytics site ID (format: XXXXXXXXX)
+goatcounter_code:  # your GoatCounter site code, i.e. the XXXX in XXXX.goatcounter.com
 
 google_site_verification:  # your google-site-verification ID (Google Search Console)
 bing_site_verification:  # out your bing-site-verification ID (Bing Webmaster)
@@ -142,10 +143,10 @@ related_blog_posts:
 # Follow instructions on https://giscus.app/ to setup for your repo to fill out
 # the information below.
 giscus:
-  repo: alshedivat/al-folio      # <your-github-user-name>/<your-github-repo-name>
-  repo_id: MDEwOlJlcG9zaXRvcnk2MDAyNDM2NQ==
-  category: Comments             # name of the category under which discussions will be created
-  category_id: DIC_kwDOA5PmLc4CTBt6
+  repo: SeungyounShin/SeungyounShin.github.io      # <your-github-user-name>/<your-github-repo-name>
+  repo_id: R_kgDOKXs4dQ
+  category: Announcements        # name of the category under which discussions will be created
+  category_id: DIC_kwDOKXs4dc4DCf43
   mapping: title                 # identify discussions by post title
   strict: 1                      # use strict identification mode
   reactions_enabled: 1           # enable (1) or disable (0) emoji reactions
@@ -360,6 +361,7 @@ jekyll-diagrams:
 
 enable_google_analytics:    false  # enables google analytics
 enable_cronitor_analytics: false  # enables cronitor RUM analytics
+enable_goatcounter_analytics: true # enables GoatCounter (no-op until goatcounter_code is set)
 enable_google_verification: false  # enables google site verification
 enable_bing_verification:   false  # enables bing site verification
 enable_masonry:             true   # enables automatic project cards arrangement
