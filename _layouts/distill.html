@@ -28,11 +28,17 @@
         {
           "author": "{{ author.name }}",
           "authorURL": "{{ author.url }}",
+          {%- comment -%}
+            Emit an empty array when the author has no affiliation, otherwise
+            distill renders an empty AFFILIATIONS column in the byline.
+          {%- endcomment -%}
           "affiliations": [
+            {%- if author.affiliations %}
             {
               "name": "{{ author.affiliations.name }}",
               "url": "{{ author.affiliations.url }}"
             }
+            {%- endif %}
           ]
         }{% if forloop.last == false %},{% endif %}
         {% endfor %}
@@ -60,7 +66,15 @@
     {%- include header.html %}
 
     <!-- Content -->
-    <div class="post distill">
+    {%- comment -%}
+      distill's JS always draws the AFFILIATIONS column, even when every author
+      has none. Flag that case so CSS can collapse it.
+    {%- endcomment -%}
+    {%- assign has_affiliations = false -%}
+    {%- for author in page.authors -%}
+      {%- if author.affiliations -%}{%- assign has_affiliations = true -%}{%- endif -%}
+    {%- endfor -%}
+    <div class="post distill{% unless has_affiliations %} no-affiliations{% endunless %}">
 
       <d-title>
         <h1>{{ page.title }}</h1>

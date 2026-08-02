@@ -5,7 +5,6 @@ description: Qwen3-4B에 Audio Encoder를 붙여 한국어 Speech LLM을 만든 
 tags: speech-llm sori
 giscus_comments: true
 date: 2026-02-16
-featured: true
 
 authors:
   - name: 신승윤

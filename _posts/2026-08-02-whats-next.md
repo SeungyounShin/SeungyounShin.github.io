@@ -8,8 +8,6 @@ giscus_comments: true
 
 authors:
   - name: 신승윤
-    affiliations:
-      name: Upstage
 
 toc:
   - name: 이 글을 쓰는 이유

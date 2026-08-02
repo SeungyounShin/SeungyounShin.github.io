@@ -800,10 +800,15 @@ figure.highlight {
     }
   }
 
+  // Sit the marks straight on the page — no white plate, no border, no chip.
   .org-logo {
-    border-radius: 2px;
+    background: transparent;
+    border: none;
+    border-radius: 0;
     box-shadow: none;
-    border: 1px solid var(--c-rule);
+    padding: 0;
+    width: 40px;
+    height: 40px;
   }
 
   .role {
@@ -1113,6 +1118,17 @@ d-byline {
     font-family: var(--c-sans) !important;
     font-size: 0.82rem !important;
     color: var(--c-ink-muted) !important;
+  }
+}
+
+// Collapse the AFFILIATIONS column when no author declares one — otherwise
+// distill leaves an empty labelled column in the byline.
+.post.distill.no-affiliations d-byline .authors-affiliations {
+  grid-template-columns: 1fr !important;
+
+  h3:nth-of-type(2),
+  .affiliation {
+    display: none !important;
   }
 }
 
