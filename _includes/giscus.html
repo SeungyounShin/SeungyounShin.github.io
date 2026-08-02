@@ -1,6 +1,9 @@
 <div id="giscus_thread" style="max-width: {{ site.max_width }}; margin: 0 auto;">
   <script>
-    let giscusTheme = localStorage.getItem("theme");
+    // On a first visit nothing is stored yet, and giscus would receive the
+    // string "null" and silently fall back to its light theme. Defer to the
+    // configured theme (preferred_color_scheme) in that case.
+    let giscusTheme = localStorage.getItem("theme") || "{{ site.giscus.theme }}";
     let giscusAttributes = {
         "src": "https://giscus.app/client.js",
         "data-repo": "{{ site.giscus.repo }}",
