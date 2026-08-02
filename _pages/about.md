@@ -3,10 +3,10 @@ layout: about
 title: about
 permalink: /
 subtitle: |+
-  <p style="margin-bottom: 10px;">I am an <strong>AI Research Engineer</strong> at <a href="https://www.upstage.ai/">Upstage</a>, where I'm actively involved in developing and optimizing AI solutions.</p>
-  <p style="margin-bottom: 10px;">I'm broadly interested in <strong>RL infrastructure</strong>, <strong>self-distillation</strong>, <strong>agents</strong>, and <strong>omni-modal</strong> models.</p>
+  <p style="margin-bottom: 10px;">I am an <strong>AI Research Engineer</strong> at <a href="https://www.upstage.ai/">Upstage</a>, where I work on large language models for <strong>long-horizon agentic tasks</strong>.</p>
+  <p style="margin-bottom: 10px;">What I care about most right now is <strong>long-horizon agentic RL</strong> — building agent environments realistic enough to stand in for actual office work, and training in them end to end. I'm also interested in <strong>self-distillation</strong> and <strong>omni-modal</strong> models.</p>
   <p style="margin-bottom: 10px;">I hold a <strong>Master's degree in Artificial Intelligence</strong> from <a href="http://xai.korea.ac.kr/">Korea University</a>, where I studied under professor <a href="https://sites.google.com/view/sungjoon-choi/personal">Sungjoon Choi</a>.</p>
-  <p style="margin-bottom: 10px;">For professional inquiries or collaborations, please contact me at <strong><a href="mailto:logan@upstage.ai">logan@upstage.ai</a></strong>.</p>
+  <p style="margin-bottom: 10px;">For recruiting, a <strong><a href="https://www.linkedin.com/in/seungyoun-shin-374580132/">LinkedIn</a> DM</strong> reaches me fastest. For research questions or collaboration, <a href="mailto:logan@upstage.ai">logan@upstage.ai</a>.</p>
 
 profile:
   image: seungyoun.jpg
@@ -18,9 +18,9 @@ selected_papers: true # includes a list of papers marked as "selected={true}"
 social: true  # includes social icons at the bottom of the page
 ---
 
-**Research Interest:** 
+**Research Interests**
 
-Large Language Models (LLMs), Omni-modal, Agents
+Long-horizon agentic RL · Agent environments · Self-distillation · Omni-modal models
 
 **Work Experience**
 
