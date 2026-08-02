@@ -1005,6 +1005,78 @@ figure.highlight {
 }
 
 /* -----------------------------------------------------------------------------
+ * 8b. Repositories
+ * -------------------------------------------------------------------------- */
+
+.c-repo-list {
+  max-width: var(--c-measure);
+  margin-top: 1.5rem;
+}
+
+.c-repo {
+  display: block;
+  padding: 1.4rem 0;
+  border-bottom: 1px solid var(--c-rule);
+  color: inherit;
+
+  &:hover {
+    text-decoration: none;
+
+    .c-repo-name {
+      color: var(--c-accent);
+    }
+  }
+
+  .c-repo-name {
+    display: block;
+    font-family: var(--c-mono);
+    font-size: 0.95rem;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    color: var(--c-ink);
+    margin-bottom: 0.35rem;
+  }
+
+  .c-repo-desc {
+    display: block;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--c-ink-muted);
+    margin-bottom: 0.5rem;
+    max-width: 38rem;
+  }
+
+  .c-repo-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 0.5rem;
+    font-family: var(--c-sans);
+    font-size: 0.74rem;
+    letter-spacing: 0.02em;
+    color: var(--c-ink-faint);
+
+    .sep {
+      opacity: 0.45;
+    }
+  }
+}
+
+.c-repo-more {
+  font-family: var(--c-sans);
+  font-size: 0.8rem;
+  color: var(--c-ink-faint);
+  margin-top: 1.5rem;
+
+  a {
+    color: var(--c-ink-muted);
+
+    &:hover {
+      color: var(--c-accent);
+    }
+  }
+}
+
+/* -----------------------------------------------------------------------------
  * 9. Projects / repositories / cv — keep them in the same key
  * -------------------------------------------------------------------------- */
 

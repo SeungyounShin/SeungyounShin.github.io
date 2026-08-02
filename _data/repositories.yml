@@ -1,10 +1,37 @@
+# Cards are rendered from this file directly. al-folio's default include pulls
+# them as images from github-readme-stats.vercel.app, which currently returns
+# 503 — so every card showed as a broken image. Keeping the copy here also means
+# a repo without a GitHub description still reads well.
+#
+# `stars` is a snapshot (2026-08-02); refresh with:
+#   gh api repos/SeungyounShin/<name> --jq '.stargazers_count'
+
 github_repos:
-  # Only repos that already carry a GitHub description — the cards render that
-  # text, so anything without one shows up as a bare title. Ordered to read as
-  # one line of work: code-execution agents → agent verification → agent harness.
-  #
-  # qwen3_computer_use (★42) and minimal-r1 (★26) belong here on merit but have
-  # no description set on GitHub yet.
-  - SeungyounShin/Llama2-Code-Interpreter
-  - SeungyounShin/agent-verify
-  - SeungyounShin/yet-another-claude-code
+  - name: Llama2-Code-Interpreter
+    description: >
+      Gives Llama 2 code execution, debugging, and internet access, so it can
+      write a program, run it, fix it, and reuse it.
+    language: Python
+    stars: 681
+
+  - name: qwen3_computer_use
+    description: >
+      A minimal Qwen3 GUI agent driver. Exposes the computer_use tool on a
+      vLLM endpoint and drives the local mouse, keyboard, and screen capture.
+    language: Python
+    stars: 42
+
+  - name: agent-verify
+    description: >
+      A systematic empirical study of self-verification strategies in agentic
+      coding harnesses.
+    language: Python
+    stars: 29
+
+  - name: minimal-r1
+    description: >
+      Reproduces the R1 recipe on a single 8×H100 node, running generation,
+      reference, and policy models on separate GPUs to keep long-CoT rollouts
+      practical.
+    language: Python
+    stars: 26
