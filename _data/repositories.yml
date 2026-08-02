@@ -1,5 +1,10 @@
 github_repos:
+  # Only repos that already carry a GitHub description — the cards render that
+  # text, so anything without one shows up as a bare title. Ordered to read as
+  # one line of work: code-execution agents → agent verification → agent harness.
+  #
+  # qwen3_computer_use (★42) and minimal-r1 (★26) belong here on merit but have
+  # no description set on GitHub yet.
   - SeungyounShin/Llama2-Code-Interpreter
-  - SeungyounShin/Past-as-a-Guide
-  - SeungyounShin/Adaptive-Wing-Loss-for-Robust-Face-Alignment-via-Heatmap-Regression
-  - SeungyounShin/minimal-r1
+  - SeungyounShin/agent-verify
+  - SeungyounShin/yet-another-claude-code
