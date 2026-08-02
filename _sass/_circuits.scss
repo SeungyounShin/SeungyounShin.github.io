@@ -1,0 +1,1301 @@
+/*******************************************************************************
+ * "Circuits" — a quiet, typographic reading system.
+ *
+ * Inspired by the Anthropic interpretability write-ups (transformer-circuits.pub):
+ * warm paper ground, serif text at a comfortable measure, hairline rules instead
+ * of cards, and metadata set small in a letterspaced sans.
+ *
+ * This file is imported LAST and deliberately overrides the al-folio defaults.
+ ******************************************************************************/
+
+/* -----------------------------------------------------------------------------
+ * 1. Tokens
+ * -------------------------------------------------------------------------- */
+
+:root {
+  --c-serif: "Source Serif 4", "Source Serif Pro", "Noto Serif KR", Georgia, "Times New Roman", serif;
+  --c-sans: "Inter", -apple-system, BlinkMacSystemFont, "Pretendard", "Apple SD Gothic Neo",
+    "Noto Sans KR", "Segoe UI", sans-serif;
+  --c-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+
+  // Reading measure. The container is 800px; text sits a touch narrower.
+  --c-measure: 46rem;
+
+  // Warm paper palette
+  --c-paper: #fbfaf7;
+  --c-raised: #ffffff;
+  --c-ink: #1a1a18;
+  --c-ink-muted: #6b6963;
+  --c-ink-faint: #94918a;
+  --c-rule: #e5e2da;
+  --c-rule-strong: #d3cfc4;
+  --c-accent: #b8562f; // clay
+  --c-accent-hover: #8f3f1f;
+  --c-accent-wash: rgba(184, 86, 47, 0.07);
+  --c-code-bg: #f2f0ea;
+
+  // Re-point al-folio's globals at the new palette so untouched
+  // components (cv, projects, repositories, …) follow along.
+  --global-bg-color: var(--c-paper);
+  --global-code-bg-color: var(--c-code-bg);
+  --global-text-color: var(--c-ink);
+  --global-text-color-light: var(--c-ink-muted);
+  --global-theme-color: var(--c-accent);
+  --global-hover-color: var(--c-accent-hover);
+  --global-hover-text-color: var(--c-raised);
+  --global-divider-color: var(--c-rule);
+  --global-card-bg-color: var(--c-raised);
+  --global-footer-bg-color: var(--c-paper);
+  --global-footer-text-color: var(--c-ink-muted);
+  --global-footer-link-color: var(--c-ink);
+  --global-distill-app-color: var(--c-ink-muted);
+}
+
+html[data-theme="dark"] {
+  --c-paper: #1a1917;
+  --c-raised: #232220;
+  --c-ink: #e9e7e2;
+  --c-ink-muted: #a5a29a;
+  --c-ink-faint: #7d7a73;
+  --c-rule: #34322d;
+  --c-rule-strong: #464339;
+  --c-accent: #e08a63;
+  --c-accent-hover: #f0a481;
+  --c-accent-wash: rgba(224, 138, 99, 0.1);
+  --c-code-bg: #26241f;
+
+  --global-bg-color: var(--c-paper);
+  --global-code-bg-color: var(--c-code-bg);
+  --global-text-color: var(--c-ink);
+  --global-text-color-light: var(--c-ink-muted);
+  --global-theme-color: var(--c-accent);
+  --global-hover-color: var(--c-accent-hover);
+  --global-hover-text-color: var(--c-paper);
+  --global-divider-color: var(--c-rule);
+  --global-card-bg-color: var(--c-raised);
+  --global-footer-bg-color: var(--c-paper);
+  --global-footer-text-color: var(--c-ink-muted);
+  --global-footer-link-color: var(--c-ink);
+  --global-distill-app-color: var(--c-ink-muted);
+}
+
+/* -----------------------------------------------------------------------------
+ * 2. Base typography
+ * -------------------------------------------------------------------------- */
+
+body {
+  font-family: var(--c-serif);
+  font-size: 1.0625rem;
+  line-height: 1.72;
+  color: var(--c-ink);
+  background-color: var(--c-paper);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-variant-numeric: oldstyle-nums proportional-nums;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--c-serif);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.24;
+  color: var(--c-ink);
+}
+
+.post h1,
+.post h2,
+.post h3,
+.post h4,
+.post h5,
+.post h6 {
+  font-weight: 600;
+  color: var(--c-ink);
+}
+
+a {
+  color: var(--c-accent);
+  text-decoration: none;
+  transition: color 0.15s ease, border-color 0.15s ease;
+
+  &:hover {
+    color: var(--c-accent-hover);
+    text-decoration: underline;
+    text-underline-offset: 0.18em;
+    text-decoration-thickness: 1px;
+  }
+}
+
+strong,
+b {
+  font-weight: 600;
+  color: var(--c-ink);
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--c-rule);
+  margin: 2.5rem 0;
+}
+
+blockquote {
+  background: transparent;
+  border-left: 2px solid var(--c-rule-strong);
+  color: var(--c-ink-muted);
+  font-size: 1rem;
+  font-style: italic;
+  margin: 1.75rem 0;
+  padding: 0.1rem 0 0.1rem 1.25rem;
+}
+
+// A small, letterspaced sans face for anything that is *about* the text
+// rather than part of it: dates, bylines, tags, section labels.
+.c-label,
+.post-meta,
+.post-tags,
+.post-list .post-meta,
+.post-list .post-tags,
+.caption,
+.pagination,
+nav[data-toggle="toc"],
+footer .container {
+  font-family: var(--c-sans);
+  font-variant-numeric: normal;
+}
+
+.c-label {
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--c-ink-faint);
+}
+
+/* -----------------------------------------------------------------------------
+ * 3. Chrome — navbar, footer
+ * -------------------------------------------------------------------------- */
+
+.navbar {
+  border-bottom: 1px solid var(--c-rule);
+  background-color: color-mix(in srgb, var(--c-paper) 88%, transparent);
+  backdrop-filter: saturate(140%) blur(12px);
+  -webkit-backdrop-filter: saturate(140%) blur(12px);
+  opacity: 1;
+  padding-top: 0.4rem;
+  padding-bottom: 0.4rem;
+}
+
+.navbar.navbar-light {
+  .navbar-brand.title {
+    font-family: var(--c-serif);
+    font-size: 1.0625rem;
+    font-weight: 600 !important;
+    letter-spacing: -0.01em;
+    color: var(--c-ink);
+  }
+
+  .navbar-nav .nav-item .nav-link {
+    font-family: var(--c-sans);
+    font-size: 0.8125rem;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    color: var(--c-ink-muted);
+    padding-left: 0.7rem;
+    padding-right: 0.7rem;
+
+    &:hover {
+      color: var(--c-ink);
+    }
+  }
+
+  .navbar-nav .nav-item.active > .nav-link {
+    font-weight: 500;
+    color: var(--c-ink);
+    box-shadow: inset 0 -1px 0 0 var(--c-accent);
+  }
+}
+
+.navbar .dropdown-menu {
+  font-family: var(--c-sans);
+  font-size: 0.8125rem;
+  border-radius: 2px;
+  border-color: var(--c-rule);
+  box-shadow: 0 6px 24px -12px rgba(0, 0, 0, 0.25);
+}
+
+#light-toggle {
+  font-size: 0.85rem;
+  color: var(--c-ink-faint);
+
+  &:hover {
+    color: var(--c-accent);
+  }
+}
+
+footer.fixed-bottom,
+footer.sticky-bottom {
+  background-color: var(--c-paper);
+  border-top: 1px solid var(--c-rule);
+
+  .container {
+    color: var(--c-ink-faint);
+    font-family: var(--c-sans);
+    font-size: 0.75rem;
+    letter-spacing: 0.01em;
+  }
+
+  a {
+    color: var(--c-ink-muted);
+
+    &:hover {
+      color: var(--c-accent);
+    }
+  }
+}
+
+// Reading-progress hairline under the navbar.
+progress::-webkit-progress-value,
+progress::-moz-progress-bar,
+.progress-bar {
+  background-color: var(--c-accent);
+}
+
+/* -----------------------------------------------------------------------------
+ * 4. Blog index
+ * -------------------------------------------------------------------------- */
+
+.c-masthead {
+  padding: 3.5rem 0 2rem;
+  border-bottom: 1px solid var(--c-rule);
+  margin-bottom: 0.5rem;
+
+  h1 {
+    font-size: clamp(2rem, 6vw, 2.75rem);
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    margin: 0 0 0.6rem;
+    color: var(--c-ink);
+  }
+
+  .c-masthead-desc {
+    font-family: var(--c-sans);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--c-ink-muted);
+    max-width: 34rem;
+    margin: 0;
+  }
+}
+
+// Section rule with an inline label: ── FEATURED ─────────
+.c-section-label {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  margin: 3rem 0 0.25rem;
+
+  &::after {
+    content: "";
+    flex: 1 1 auto;
+    height: 1px;
+    background: var(--c-rule);
+  }
+}
+
+.c-entry-list {
+  list-style: none;
+  margin: 0 0 3rem;
+  padding: 0;
+}
+
+.c-entry {
+  display: grid;
+  grid-template-columns: 6.5rem 1fr;
+  gap: 0 1.75rem;
+  padding: 1.75rem 0;
+  border-bottom: 1px solid var(--c-rule);
+
+  // The left rail: date, set small and quiet, aligned to the title's x-height.
+  .c-entry-rail {
+    font-family: var(--c-sans);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--c-ink-faint);
+    padding-top: 0.45rem;
+    white-space: nowrap;
+  }
+
+  .c-entry-title {
+    font-family: var(--c-serif);
+    font-size: 1.375rem;
+    font-weight: 600;
+    letter-spacing: -0.018em;
+    line-height: 1.3;
+    margin: 0 0 0.35rem;
+
+    a {
+      color: var(--c-ink);
+
+      &:hover {
+        color: var(--c-accent);
+        text-decoration: none;
+      }
+    }
+
+    // External-link arrow inherits the text colour instead of a hard grey.
+    svg .icon_svg-stroke {
+      stroke: currentColor;
+      opacity: 0.45;
+    }
+  }
+
+  .c-entry-desc {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--c-ink-muted);
+    margin: 0 0 0.55rem;
+    max-width: 38rem;
+  }
+
+  .c-entry-meta {
+    font-family: var(--c-sans);
+    font-size: 0.74rem;
+    letter-spacing: 0.02em;
+    color: var(--c-ink-faint);
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0 0.5rem;
+
+    a {
+      color: var(--c-ink-faint);
+
+      &:hover {
+        color: var(--c-accent);
+        text-decoration: none;
+      }
+    }
+
+    .sep {
+      opacity: 0.45;
+    }
+  }
+
+  .c-entry-thumb {
+    grid-column: 1 / -1;
+    margin-top: 0.9rem;
+
+    img {
+      width: 100%;
+      max-height: 220px;
+      object-fit: cover;
+      border-radius: 2px;
+      border: 1px solid var(--c-rule);
+    }
+  }
+
+  &.is-pinned .c-entry-rail::before {
+    content: "★ ";
+    color: var(--c-accent);
+  }
+}
+
+@media (min-width: 768px) {
+  .c-entry .c-entry-thumb {
+    grid-column: 2;
+  }
+}
+
+@media (max-width: 575px) {
+  .c-entry {
+    grid-template-columns: 1fr;
+    gap: 0;
+
+    .c-entry-rail {
+      padding-top: 0;
+      margin-bottom: 0.4rem;
+    }
+
+    .c-entry-thumb {
+      grid-column: 1;
+    }
+  }
+}
+
+// Tag / category browse strip
+.tag-category-list {
+  border-bottom: 1px solid var(--c-rule);
+  text-align: left;
+  padding-top: 1.25rem;
+
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 0 0.35rem;
+
+    p,
+    li {
+      font-family: var(--c-sans);
+      font-size: 0.78rem;
+      padding: 0.4rem 0.35rem 0.9rem;
+      color: var(--c-ink-faint);
+    }
+
+    a {
+      color: var(--c-ink-muted);
+
+      &:hover {
+        color: var(--c-accent);
+      }
+    }
+  }
+}
+
+.pagination {
+  font-family: var(--c-sans);
+  font-size: 0.8rem;
+
+  .page-item .page-link {
+    border-color: var(--c-rule);
+    background-color: transparent;
+    color: var(--c-ink-muted);
+    border-radius: 2px;
+
+    &:hover {
+      color: var(--c-accent);
+      background-color: var(--c-accent-wash);
+    }
+  }
+
+  .page-item.active .page-link {
+    background-color: var(--c-accent);
+    border-color: var(--c-accent);
+    color: var(--c-paper);
+  }
+}
+
+/* -----------------------------------------------------------------------------
+ * 5. Article
+ * -------------------------------------------------------------------------- */
+
+.post > .post-header,
+.post > .post-content,
+.post > article {
+  max-width: var(--c-measure);
+}
+
+.c-article-header {
+  padding: 3.25rem 0 1.5rem;
+  margin-bottom: 2.25rem;
+  border-bottom: 1px solid var(--c-rule);
+
+  .post-title {
+    font-family: var(--c-serif);
+    font-size: clamp(1.9rem, 5vw, 2.6rem);
+    font-weight: 600;
+    letter-spacing: -0.026em;
+    line-height: 1.14;
+    color: var(--c-ink);
+    margin: 0 0 0.9rem;
+  }
+
+  .c-article-desc {
+    font-size: 1.125rem;
+    line-height: 1.6;
+    color: var(--c-ink-muted);
+    margin: 0 0 1.4rem;
+    max-width: 38rem;
+  }
+
+  // Byline grid: DATE / AUTHOR / TAGS as labelled columns, Distill-style.
+  .c-byline {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.75rem;
+    font-family: var(--c-sans);
+  }
+
+  .c-byline-item {
+    min-width: 0;
+
+    dt {
+      font-size: 0.66rem;
+      font-weight: 500;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+      color: var(--c-ink-faint);
+      margin: 0 0 0.15rem;
+    }
+
+    dd {
+      font-size: 0.82rem;
+      color: var(--c-ink-muted);
+      margin: 0;
+
+      a {
+        color: var(--c-ink-muted);
+
+        &:hover {
+          color: var(--c-accent);
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}
+
+.post-content {
+  font-size: 1.0625rem;
+  line-height: 1.75;
+
+  > p,
+  > ul,
+  > ol,
+  > blockquote,
+  > h1,
+  > h2,
+  > h3,
+  > h4 {
+    max-width: var(--c-measure);
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    margin-top: 3rem;
+    margin-bottom: 0.85rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--c-rule);
+  }
+
+  h3 {
+    font-size: 1.1875rem;
+    margin-top: 2.25rem;
+    margin-bottom: 0.6rem;
+  }
+
+  h4 {
+    font-family: var(--c-sans);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--c-ink-muted);
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    margin-bottom: 1.35rem;
+  }
+
+  li {
+    margin-bottom: 0.4rem;
+  }
+
+  // Body links get a light underline so they read as citations, not buttons.
+  p a,
+  li a {
+    border-bottom: 1px solid var(--c-accent-wash);
+
+    &:hover {
+      border-bottom-color: var(--c-accent);
+      text-decoration: none;
+    }
+  }
+
+  img,
+  figure {
+    border-radius: 2px;
+  }
+
+  .caption {
+    font-size: 0.8rem;
+    color: var(--c-ink-faint);
+    text-align: center;
+  }
+
+  blockquote {
+    p {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.post .post-content blockquote {
+  border-left: 2px solid var(--c-rule-strong);
+  padding: 0.1rem 0 0.1rem 1.25rem;
+}
+
+#table-of-contents {
+  font-family: var(--c-sans);
+  font-size: 0.85rem;
+  border-left: 1px solid var(--c-rule);
+  padding-left: 1.25rem;
+  margin-bottom: 1rem;
+
+  ul {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  ul ul {
+    padding-left: 1rem;
+  }
+
+  li {
+    margin-bottom: 0.2rem;
+  }
+
+  a {
+    color: var(--c-ink-muted);
+
+    &:hover {
+      color: var(--c-accent);
+    }
+  }
+}
+
+nav[data-toggle="toc"] {
+  font-family: var(--c-sans);
+
+  .nav > li > a,
+  .nav .nav > li > a,
+  .nav-link.active {
+    font-size: 0.75rem;
+    color: var(--c-ink-muted);
+  }
+
+  .nav-link.active {
+    color: var(--c-accent);
+    border-left-color: var(--c-accent);
+  }
+}
+
+/* -----------------------------------------------------------------------------
+ * 6. Code
+ * -------------------------------------------------------------------------- */
+
+pre,
+code,
+kbd,
+samp {
+  font-family: var(--c-mono);
+  font-variant-numeric: normal;
+}
+
+code {
+  font-size: 0.875em;
+  color: var(--c-ink);
+  background-color: var(--c-code-bg);
+  border-radius: 2px;
+  padding: 0.12em 0.32em;
+}
+
+pre {
+  font-size: 0.84rem;
+  line-height: 1.65;
+  color: var(--c-ink);
+  background-color: var(--c-code-bg);
+  border: 1px solid var(--c-rule);
+  border-radius: 2px;
+  padding: 0.9rem 1.1rem;
+  overflow-x: auto;
+
+  code {
+    font-size: inherit;
+    padding: 0;
+    background: transparent;
+  }
+}
+
+figure.highlight {
+  max-width: var(--c-measure);
+}
+
+.code-display-wrapper .copy {
+  font-family: var(--c-sans);
+  font-size: 0.72rem;
+  border: 1px solid var(--c-rule);
+  border-radius: 2px;
+  background: var(--c-raised);
+  color: var(--c-ink-muted);
+}
+
+/* -----------------------------------------------------------------------------
+ * 7. About page
+ * -------------------------------------------------------------------------- */
+
+.post h1.post-title {
+  color: var(--c-ink);
+  font-weight: 600;
+  letter-spacing: -0.028em;
+}
+
+.profile {
+  img.img-fluid {
+    border-radius: 2px !important;
+    border: 1px solid var(--c-rule);
+    box-shadow: none;
+  }
+}
+
+.post .desc {
+  font-size: 1.0625rem;
+  line-height: 1.7;
+
+  p {
+    margin-bottom: 0.7rem;
+  }
+
+  strong {
+    font-weight: 600;
+  }
+}
+
+.social .contact-icons {
+  font-size: 1.35rem;
+  justify-content: flex-start;
+  gap: 1rem;
+  margin-top: 0.75rem;
+
+  a i::before {
+    color: var(--c-ink-faint);
+  }
+
+  a:hover i::before {
+    color: var(--c-accent);
+  }
+}
+
+// A paragraph whose only content is bold text ("Work Experience", "Education")
+// reads as a section header — set it like one.
+.post > article > .clearfix > p > strong:only-child {
+  display: block;
+  font-family: var(--c-sans);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--c-ink-faint);
+  padding-bottom: 0.6rem;
+  margin-top: 2.5rem;
+  border-bottom: 1px solid var(--c-rule);
+}
+
+.experience-list {
+  .experience-item {
+    gap: 16px;
+    border-radius: 2px;
+
+    &:hover {
+      background-color: var(--c-accent-wash);
+    }
+  }
+
+  .org-logo {
+    border-radius: 2px;
+    box-shadow: none;
+    border: 1px solid var(--c-rule);
+  }
+
+  .role {
+    font-family: var(--c-serif);
+    font-weight: 600;
+    font-size: 1rem;
+  }
+
+  .org {
+    font-family: var(--c-sans);
+    font-size: 0.86rem;
+    color: var(--c-ink-muted);
+  }
+
+  .period {
+    font-family: var(--c-sans);
+    font-size: 0.75rem;
+    letter-spacing: 0.02em;
+    color: var(--c-ink-faint);
+  }
+}
+
+/* -----------------------------------------------------------------------------
+ * 8. Publications
+ * -------------------------------------------------------------------------- */
+
+.publications {
+  margin-top: 1.5rem;
+
+  h1 {
+    font-size: 1.75rem;
+    text-align: left;
+    color: var(--c-ink);
+    margin: 1.5rem 0 1rem;
+  }
+
+  // "publications [full list]" heading on the about page
+  h2 {
+    font-family: var(--c-sans);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+    color: var(--c-ink-faint);
+    margin: 3rem 0 0.25rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid var(--c-rule);
+
+    a {
+      color: var(--c-ink-faint);
+      text-transform: none;
+      letter-spacing: 0.02em;
+
+      &:hover {
+        color: var(--c-accent);
+      }
+    }
+  }
+
+  // Year separators
+  h2.bibliography {
+    font-family: var(--c-sans);
+    font-size: 0.72rem;
+    color: var(--c-ink-faint);
+    border-top: none;
+    border-bottom: 1px solid var(--c-rule);
+    text-align: left;
+    padding-top: 0;
+    margin-top: 2.75rem;
+    margin-bottom: 0;
+
+    span {
+      font-size: inherit;
+      letter-spacing: 0.11em;
+    }
+  }
+
+  ol.bibliography > li {
+    border-bottom: 1px solid var(--c-rule);
+    border-radius: 0;
+    padding: 1.5rem 0;
+    margin: 0;
+
+    &:hover {
+      background-color: transparent;
+    }
+
+    .abbr {
+      height: auto;
+      margin-bottom: 0.5rem;
+
+      // Bootstrap/MDB's `.badge` forces a white foreground — outrank it.
+      abbr.badge,
+      abbr.badge a,
+      span.award.badge {
+        font-family: var(--c-sans);
+        font-size: 0.66rem;
+        font-weight: 500;
+        letter-spacing: 0.09em;
+        text-transform: uppercase;
+        text-decoration: none;
+        color: var(--c-accent) !important;
+      }
+
+      abbr.badge,
+      span.award.badge {
+        display: inline-block;
+        background-color: transparent !important;
+        border: 1px solid var(--c-accent);
+        border-radius: 2px;
+        padding: 0.12rem 0.5rem;
+        white-space: nowrap;
+      }
+
+      span.award.badge {
+        color: var(--c-ink-muted) !important;
+        border-color: var(--c-rule-strong);
+        margin-top: 0.35rem;
+      }
+    }
+
+    .title {
+      font-family: var(--c-serif);
+      font-size: 1.1875rem;
+      font-weight: 600;
+      letter-spacing: -0.015em;
+      line-height: 1.35;
+      margin-bottom: 0.3rem;
+    }
+
+    .author,
+    .periodical {
+      font-family: var(--c-sans);
+      font-size: 0.84rem;
+      color: var(--c-ink-muted);
+      line-height: 1.55;
+    }
+
+    .periodical {
+      font-style: italic;
+      color: var(--c-ink-faint);
+    }
+
+    .author > em {
+      font-style: normal;
+      font-weight: 600;
+      color: var(--c-ink);
+      border-bottom: none;
+    }
+
+    .author a {
+      border-bottom: 1px dashed var(--c-rule-strong);
+      color: var(--c-ink-muted);
+    }
+
+    .links {
+      margin-top: 0.6rem;
+
+      a.btn {
+        font-family: var(--c-sans);
+        font-size: 0.7rem;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        border: 1px solid var(--c-rule-strong);
+        border-radius: 2px;
+        color: var(--c-ink-muted);
+        padding: 0.2rem 0.7rem;
+
+        &:hover {
+          color: var(--c-accent);
+          border-color: var(--c-accent);
+          background-color: var(--c-accent-wash);
+        }
+      }
+    }
+
+    .hidden {
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    div.abstract.hidden.open {
+      border: none;
+      border-left: 2px solid var(--c-rule-strong);
+      margin-top: 0.75rem;
+      color: var(--c-ink-muted);
+
+      p {
+        margin: 0 0 0 1rem;
+        color: var(--c-ink-muted);
+      }
+    }
+  }
+}
+
+/* -----------------------------------------------------------------------------
+ * 9. Projects / repositories / cv — keep them in the same key
+ * -------------------------------------------------------------------------- */
+
+.card {
+  border: 1px solid var(--c-rule);
+  border-radius: 2px;
+  box-shadow: none !important;
+  background-color: var(--c-raised);
+
+  .card-title {
+    font-family: var(--c-serif);
+    font-weight: 600;
+    letter-spacing: -0.015em;
+  }
+
+  .card-text {
+    font-size: 0.92rem;
+    color: var(--c-ink-muted);
+  }
+}
+
+.card.hoverable:hover {
+  border-color: var(--c-rule-strong);
+  transform: none;
+}
+
+.projects h2.category {
+  font-family: var(--c-sans);
+  font-size: 0.72rem;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--c-ink-faint);
+  text-align: left;
+  border-bottom: 1px solid var(--c-rule);
+}
+
+.cv .card {
+  border: 1px solid var(--c-rule);
+
+  .list-group-item .badge {
+    background-color: var(--c-accent) !important;
+    color: var(--c-paper) !important;
+    border-radius: 2px;
+    font-family: var(--c-sans);
+    font-weight: 500;
+  }
+}
+
+.header-bar {
+  border-bottom: 1px solid var(--c-rule);
+  text-align: left;
+  padding: 3rem 0 1.75rem;
+
+  h1 {
+    font-size: clamp(2rem, 6vw, 2.75rem);
+    color: var(--c-ink);
+    letter-spacing: -0.025em;
+  }
+
+  h2 {
+    font-family: var(--c-sans);
+    font-size: 0.95rem;
+    font-weight: 400;
+    color: var(--c-ink-muted);
+    letter-spacing: 0;
+  }
+}
+
+/* -----------------------------------------------------------------------------
+ * 10. Distill posts
+ *
+ * distill's template.v2.js injects its own stylesheet, and `_distill.scss`
+ * leans on `!important` — so this section does too, to land on top.
+ * -------------------------------------------------------------------------- */
+
+d-title {
+  h1 {
+    font-family: var(--c-serif) !important;
+    font-weight: 600 !important;
+    font-size: clamp(1.9rem, 5vw, 2.6rem) !important;
+    letter-spacing: -0.026em !important;
+    line-height: 1.14 !important;
+    color: var(--c-ink) !important;
+  }
+
+  p {
+    font-family: var(--c-serif) !important;
+    font-size: 1.125rem !important;
+    line-height: 1.6 !important;
+    color: var(--c-ink-muted) !important;
+  }
+}
+
+d-byline {
+  font-family: var(--c-sans) !important;
+  border-top-color: var(--c-rule) !important;
+
+  .byline-container h3,
+  h3 {
+    font-family: var(--c-sans) !important;
+    font-size: 0.66rem !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.11em !important;
+    text-transform: uppercase !important;
+    color: var(--c-ink-faint) !important;
+  }
+
+  p,
+  a,
+  d-article & a {
+    font-family: var(--c-sans) !important;
+    font-size: 0.82rem !important;
+    color: var(--c-ink-muted) !important;
+  }
+}
+
+d-article {
+  font-family: var(--c-serif) !important;
+  border-top-color: var(--c-rule) !important;
+
+  p,
+  li,
+  table {
+    font-family: var(--c-serif) !important;
+    font-size: 1.0625rem !important;
+    line-height: 1.75 !important;
+    color: var(--c-ink) !important;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--c-serif) !important;
+    font-weight: 600 !important;
+    letter-spacing: -0.018em !important;
+    color: var(--c-ink) !important;
+  }
+
+  h2 {
+    font-size: 1.5rem !important;
+    border-bottom: 1px solid var(--c-rule) !important;
+    padding-bottom: 0.4rem;
+    margin-top: 3rem;
+  }
+
+  h3 {
+    font-size: 1.1875rem !important;
+    border-bottom: none !important;
+  }
+
+  a {
+    color: var(--c-accent) !important;
+    border-bottom: 1px solid var(--c-accent-wash) !important;
+
+    &:hover {
+      color: var(--c-accent-hover) !important;
+      border-bottom-color: var(--c-accent) !important;
+    }
+  }
+
+  hr,
+  table,
+  table th,
+  table td {
+    border-bottom-color: var(--c-rule) !important;
+  }
+
+  blockquote {
+    border-left: 2px solid var(--c-rule-strong) !important;
+    background: transparent;
+    color: var(--c-ink-muted) !important;
+    font-style: italic;
+    padding: 0.1rem 0 0.1rem 1.25rem;
+
+    p {
+      color: var(--c-ink-muted) !important;
+    }
+  }
+
+  details {
+    background-color: var(--c-code-bg);
+    border: 1px solid var(--c-rule);
+    border-radius: 2px;
+
+    summary {
+      font-family: var(--c-sans);
+      font-size: 0.85rem;
+      color: var(--c-accent);
+    }
+  }
+
+  // Sidebar table of contents: quiet sans, never accent-coloured.
+  d-contents {
+    border-right-color: var(--c-rule) !important;
+
+    nav {
+      font-family: var(--c-sans) !important;
+      font-size: 0.8rem !important;
+
+      h3 {
+        font-family: var(--c-sans) !important;
+        font-size: 0.66rem !important;
+        font-weight: 500 !important;
+        letter-spacing: 0.11em !important;
+        text-transform: uppercase !important;
+        color: var(--c-ink-faint) !important;
+        border-bottom: none !important;
+      }
+
+      div,
+      li {
+        font-family: var(--c-sans) !important;
+        font-weight: 400 !important;
+        line-height: 1.45;
+        color: var(--c-ink-muted) !important;
+      }
+
+      a {
+        color: var(--c-ink-muted) !important;
+        border-bottom: none !important;
+
+        &:hover {
+          color: var(--c-accent) !important;
+          border-bottom: none !important;
+        }
+      }
+
+      // Top-level entries carry a touch more weight than their subsections.
+      > div > a {
+        color: var(--c-ink) !important;
+        font-weight: 500 !important;
+      }
+    }
+
+    toc-line {
+      border-right-color: var(--c-rule) !important;
+    }
+  }
+}
+
+d-appendix {
+  font-family: var(--c-sans) !important;
+  border-top-color: var(--c-rule) !important;
+  color: var(--c-ink-faint) !important;
+
+  h3,
+  li,
+  span {
+    color: var(--c-ink-faint) !important;
+  }
+
+  a,
+  a.footnote-backlink {
+    color: var(--c-ink-muted) !important;
+
+    &:hover {
+      color: var(--c-accent) !important;
+    }
+  }
+}
+
+/* -----------------------------------------------------------------------------
+ * 11. Related posts — rendered as a quiet footer list, not cards
+ * -------------------------------------------------------------------------- */
+
+.related-posts {
+  max-width: var(--c-measure);
+  margin-top: 4rem;
+  padding-top: 0;
+
+  h2 {
+    font-family: var(--c-sans);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+    color: var(--c-ink-faint);
+    border-bottom: 1px solid var(--c-rule);
+    padding-bottom: 0.6rem;
+    margin-bottom: 0;
+
+    span {
+      font-size: inherit;
+    }
+  }
+
+  .card {
+    border: none;
+    border-bottom: 1px solid var(--c-rule);
+    border-radius: 0;
+    background: transparent;
+
+    .card-body {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+}
