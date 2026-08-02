@@ -117,7 +117,7 @@ contact_note: >
 
 google_analytics:  # your Google Analytics measurement ID (format: G-XXXXXXXXXX)
 cronitor_analytics:  # cronitor RUM analytics site ID (format: XXXXXXXXX)
-goatcounter_code:  # your GoatCounter site code, i.e. the XXXX in XXXX.goatcounter.com
+goatcounter_code: seungyounshin  # your GoatCounter site code, i.e. the XXXX in XXXX.goatcounter.com
 
 google_site_verification:  # your google-site-verification ID (Google Search Console)
 bing_site_verification:  # out your bing-site-verification ID (Bing Webmaster)
