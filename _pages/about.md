@@ -4,9 +4,9 @@ title: about
 permalink: /
 subtitle: |+
   <p style="margin-bottom: 10px;">I am an <strong>AI Research Engineer</strong> at <a href="https://www.upstage.ai/">Upstage</a>, where I work on large language models for <strong>long-horizon agentic tasks</strong>.</p>
-  <p style="margin-bottom: 10px;">What I care about most right now is <strong>long-horizon agentic RL</strong> — building agent environments realistic enough to stand in for actual office work, and training in them end to end. I'm also interested in <strong>self-distillation</strong> and <strong>omni-modal</strong> models.</p>
+  <p style="margin-bottom: 10px;">What I care about most right now is <strong>long-horizon agentic RL</strong> — building agent environments realistic enough to stand in for actual office work, and training in them end to end.</p>
   <p style="margin-bottom: 10px;">I hold a <strong>Master's degree in Artificial Intelligence</strong> from <a href="http://xai.korea.ac.kr/">Korea University</a>, where I studied under professor <a href="https://sites.google.com/view/sungjoon-choi/personal">Sungjoon Choi</a>.</p>
-  <p style="margin-bottom: 10px;">A <a href="https://www.linkedin.com/in/seungyoun-shin-374580132/">LinkedIn</a> DM is the easiest way to reach me. For research questions or collaboration, <a href="mailto:logan@upstage.ai">logan@upstage.ai</a>.</p>
+  <p style="margin-bottom: 10px;">A <a href="https://www.linkedin.com/in/seungyoun-shin-374580132/">LinkedIn</a> DM is the easiest way to reach me.</p>
 
 profile:
   image: seungyoun.jpg
@@ -20,7 +20,7 @@ social: true  # includes social icons at the bottom of the page
 
 **Research Interests**
 
-Long-horizon agentic RL · Agent environments · Self-distillation · Omni-modal models
+Long-horizon agentic RL · Agent environments
 
 **Work Experience**
 
