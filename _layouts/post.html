@@ -18,6 +18,7 @@ layout: default
   {%- assign read_time = content | number_of_words | divided_by: 180 | plus: 1 -%}
 
   <header class="post-header c-article-header">
+    <a class="c-back-to-journal" href="{{ '/blog/' | relative_url }}">← 모든 글</a>
     <h1 class="post-title">{{ page.title }}</h1>
     {%- if page.description %}
     <p class="c-article-desc">{{ page.description }}</p>

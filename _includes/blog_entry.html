@@ -18,7 +18,7 @@
 
 <article class="c-entry{% if include.pinned %} is-pinned{% endif %}">
 
-  <div class="c-entry-rail">{{ post.date | date: "%b %-d" }}</div>
+  <time class="c-entry-rail" datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: "%b %-d" }}</time>
 
   <div class="c-entry-body">
     <h3 class="c-entry-title">
@@ -41,8 +41,10 @@
     {%- endif %}
 
     <p class="c-entry-meta">
+      {% unless include.compact_meta %}
       <span>{{ post.date | date: '%Y' }}</span>
       <span class="sep">&middot;</span>
+      {% endunless %}
       <span>{{ read_time }} min read</span>
 
       {%- if post.external_source %}
